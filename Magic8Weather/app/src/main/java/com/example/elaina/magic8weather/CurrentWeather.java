@@ -17,18 +17,15 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by Elaina on 1/9/2017.
- */
 public class CurrentWeather extends Fragment {
 
     Typeface weatherFont;
 
     TextView cityField;
     TextView updatedField;
-    TextView detailsField;
-    TextView currentTemperatureField;
+    TextView currentTemp;
     TextView weatherIcon;
+
 
     Handler handler;
 
@@ -42,8 +39,7 @@ public class CurrentWeather extends Fragment {
         View rootView = inflater.inflate(R.layout.content_main, container, false);
         cityField = (TextView) rootView.findViewById(R.id.city_field);
         updatedField = (TextView) rootView.findViewById(R.id.last_updated);
-        //detailsField = (TextView) rootView.findViewById(R.id.detail_weather);
-        currentTemperatureField = (TextView) rootView.findViewById(R.id.temp_field);
+        currentTemp = (TextView) rootView.findViewById(R.id.temp_field);
         weatherIcon = (TextView) rootView.findViewById(R.id.weather_icon);
 
         weatherIcon.setTypeface(weatherFont);
@@ -89,12 +85,8 @@ public class CurrentWeather extends Fragment {
 
             JSONObject details = json.getJSONArray("weather").getJSONObject(0);
             JSONObject main = json.getJSONObject("main");
-//            detailsField.setText(
-//                    details.getString("description").toUpperCase(Locale.US) +
-//                            "\n" + "Humidity: " + main.getString("humidity") + "%" +
-//                            "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
-            currentTemperatureField.setText(
+            currentTemp.setText(
                     String.format("%.2f", main.getDouble("temp"))+ " \u2109");
 
             DateFormat df = DateFormat.getDateTimeInstance();
@@ -106,7 +98,7 @@ public class CurrentWeather extends Fragment {
                     json.getJSONObject("sys").getLong("sunset") * 1000);
 
         }catch(Exception e){
-            Log.e("SimpleWeather", "One or more fields not found in the JSON data");
+            Log.e("Magic8Weather", "Some field(s) not found in the JSON data");
         }
     }
 

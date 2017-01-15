@@ -1,5 +1,13 @@
 package com.example.elaina.magic8weather;
 
+/**
+ * Elaina Hill (emh2hb)
+ *
+ * Project Sources:
+ * Used code snippets from https://www.youtube.com/watch?v=Y7JTkXoN8OE
+ * and https://code.tutsplus.com/tutorials/create-a-weather-app-on-android--cms-21587
+ */
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;

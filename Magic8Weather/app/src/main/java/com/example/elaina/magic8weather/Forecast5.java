@@ -26,9 +26,6 @@ public class Forecast5 extends Fragment {
     TextView currentTemp;
     TextView minTemp;
     TextView maxTemp;
-    TextView updatedField;
-    TextView currentTemperatureField;
-    TextView weatherIcon;
 
     Handler handler;
 
@@ -41,13 +38,10 @@ public class Forecast5 extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.content_main2, container, false);
         cityField = (TextView) rootView.findViewById(R.id.city_tag);
-//        updatedField = (TextView) rootView.findViewById(R.id.last_updated);
-//        currentTemperatureField = (TextView) rootView.findViewById(R.id.temp_field);
         detailsField = (TextView) rootView.findViewById(R.id.detail_weather);
         currentTemp = (TextView) rootView.findViewById(R.id.current_temp);
         minTemp = (TextView) rootView.findViewById(R.id.min_temp);
         maxTemp = (TextView) rootView.findViewById(R.id.max_temp);
-//        weatherIcon = (TextView) rootView.findViewById(R.id.weather_icon);
 
         return rootView;
     }
@@ -88,7 +82,6 @@ public class Forecast5 extends Fragment {
                     json.getJSONObject("city").getString("country"));
 
             JSONObject forecast1 = json.getJSONArray("list").getJSONObject(0);
-            //JSONObject main = forecast1.getJSONObject("main");
             JSONObject details = forecast1.getJSONArray("weather").getJSONObject(0);
             JSONObject main = forecast1.getJSONObject("main");
             detailsField.setText(
@@ -102,12 +95,7 @@ public class Forecast5 extends Fragment {
 
             maxTemp.setText( "Maximum Temperature: " +
                     String.format("%.2f", main.getDouble("temp_max"))+ " \u2109");
-//            currentTemperatureField.setText(
-//                    String.format("%.2f", main.getDouble("temp"))+ " \u2109");
-//
-//            DateFormat df = DateFormat.getDateTimeInstance();
-//            String updatedOn = df.format(new Date(json.getLong("dt")*1000));
-//            updatedField.setText("Last update: " + updatedOn);
+
 
 
         }catch(Exception e){
